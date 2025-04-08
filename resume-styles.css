@@ -1,0 +1,232 @@
+/* Resume specific styles */
+
+/* Export buttons section */
+.resume-actions {
+    background-color: var(--light);
+    padding: 20px 0;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.export-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+}
+
+.download-btn {
+    display: inline-flex;
+    align-items: center;
+    padding: 10px 20px;
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.download-btn i {
+    margin-right: 8px;
+    font-size: 1.2rem;
+}
+
+.download-btn:hover {
+    background-color: #5a0b8d;
+    transform: translateY(-2px);
+}
+
+.print-btn {
+    background-color: #444;
+}
+
+.print-btn:hover {
+    background-color: #222;
+}
+
+/* Resume container */
+.resume-container {
+    max-width: 900px;
+    padding: 40px 30px;
+    background-color: white;
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+}
+
+/* Resume header */
+.resume-header {
+    text-align: center;
+    margin-bottom: 40px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid var(--border);
+}
+
+.resume-header h1 {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+    color: var(--primary);
+}
+
+.resume-contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.resume-contact a {
+    text-decoration: none;
+    color: var(--primary);
+}
+
+/* Resume sections */
+.resume-section {
+    margin-bottom: 40px;
+}
+
+.resume-section h2 {
+    font-size: 1.8rem;
+    color: var(--primary);
+    margin-bottom: 20px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--primary);
+}
+
+.resume-item {
+    margin-bottom: 25px;
+}
+
+.resume-item-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    margin-bottom: 5px;
+    flex-wrap: wrap;
+}
+
+.resume-item-header h3 {
+    font-size: 1.3rem;
+    color: var(--dark);
+    margin-right: 15px;
+}
+
+.date {
+    color: var(--gray);
+    font-style: italic;
+    font-size: 1rem;
+}
+
+.institution {
+    font-weight: 600;
+    margin-bottom: 8px;
+}
+
+.resume-item p {
+    margin-bottom: 10px;
+}
+
+.resume-item ul {
+    margin-left: 20px;
+    margin-bottom: 10px;
+}
+
+.resume-item ul li {
+    margin-bottom: 8px;
+}
+
+.certification-list, .skills-list {
+    list-style-type: disc;
+    padding-left: 20px;
+}
+
+.certification-list li, .skills-list li {
+    margin-bottom: 8px;
+}
+
+/* Print styles */
+@media print {
+    header, .resume-actions, footer {
+        display: none;
+    }
+    
+    body {
+        font-size: 12pt;
+    }
+    
+    .resume-container {
+        box-shadow: none;
+        padding: 0;
+        max-width: 100%;
+    }
+    
+    .resume-section {
+        page-break-inside: avoid;
+    }
+    
+    a {
+        text-decoration: none;
+        color: black;
+    }
+    
+    .resume-header h1 {
+        color: black;
+    }
+    
+    .resume-section h2 {
+        color: black;
+        border-bottom-color: #999;
+    }
+    
+    .resume-item-header h3 {
+        color: black;
+    }
+}
+
+/* Responsive styles */
+@media (max-width: 768px) {
+    .resume-container {
+        padding: 25px 15px;
+    }
+    
+    .resume-header h1 {
+        font-size: 2rem;
+    }
+    
+    .resume-item-header {
+        flex-direction: column;
+    }
+    
+    .resume-item-header h3 {
+        margin-right: 0;
+        margin-bottom: 5px;
+    }
+    
+    .date {
+        margin-bottom: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .download-btn {
+        padding: 8px 15px;
+        font-size: 0.9rem;
+    }
+    
+    .resume-header h1 {
+        font-size: 1.8rem;
+    }
+    
+    .resume-section h2 {
+        font-size: 1.5rem;
+    }
+    
+    .resume-item-header h3 {
+        font-size: 1.2rem;
+    }
+} 

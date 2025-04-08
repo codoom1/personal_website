@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Christopher Odoom - Resume</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="resume-styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/docx/7.1.0/docx.js"></script>
+</head>
+<body>
+    <header>
+        <div class="container">
+            <h1>Christopher Odoom</h1>
+            <p class="subtitle">Ph.D. Student in Statistics</p>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <nav>
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#projects">Projects</a></li>
+                    <li><a href="index.html#presentations">Presentations</a></li>
+                    <li><a href="index.html#publications">Publications</a></li>
+                    <li><a href="index.html#contact">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="resume-actions">
+        <div class="container">
+            <div class="export-buttons">
+                <button id="download-pdf" class="download-btn"><i class="fas fa-file-pdf"></i> Export to PDF</button>
+                <button id="download-word" class="download-btn"><i class="fas fa-file-word"></i> Export to Word</button>
+                <a href="javascript:window.print();" class="download-btn print-btn"><i class="fas fa-print"></i> Print</a>
+            </div>
+        </div>
+    </section>
+
+    <section id="resume-content" class="section">
+        <div class="container resume-container">
+            <div class="resume-header">
+                <h1>Christopher Odoom</h1>
+                <div class="resume-contact">
+                    <p>38 Greenleaves Dr, Apt 87, Hadley, MA, 01035</p>
+                    <p><a href="mailto:codoom@umass.edu">codoom@umass.edu</a> | <a href="tel:4134726306">413-472-6306</a></p>
+                </div>
+            </div>
+
+            <div class="resume-section">
+                <h2>Education</h2>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <h3>Ph.D. in Statistics</h3>
+                        <p class="date">2024 - Present</p>
+                    </div>
+                    <p class="institution">University of Massachusetts, Amherst, US</p>
+                </div>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <h3>M.Sc. in Statistics</h3>
+                        <p class="date">2022 - 2024</p>
+                    </div>
+                    <p class="institution">University of Massachusetts, Amherst, US</p>
+                </div>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <h3>B.Sc. in Statistics</h3>
+                        <p class="date">2017 - 2021</p>
+                    </div>
+                    <p class="institution">Kwame Nkrumah University of Science and Technology, Kumasi, Ghana</p>
+                </div>
+            </div>
+
+            <div class="resume-section">
+                <h2>Publications</h2>
+                <div class="resume-item">
+                    <p>Boateng, A., Odoom, C., Mensah, E. T., Fobi, S. M., & Maposa, D. (2023). Predictive Analysis of Misuse of Alcohol and Drugs using Machine Learning Algorithms: The Case of Using an Imbalanced Dataset from South Africa. <em>Appl. Math</em>, 17(2), 261-271.</p>
+                </div>
+                <div class="resume-item">
+                    <p>Odoom, C., Boateng, A., Mensah, S. F., & Maposa, D. (2024). Modeling the daily dynamics in bike rental system using weather and calendar conditions: A semi-parametric approach. <em>Scientific African</em>, 24, e02211.</p>
+                </div>
+                <div class="resume-item">
+                    <p>Odoom, C., Boateng, A., Folitse, D. (Accepted on September 20, 2023, by Springer for their 7th International Conference on Intelligent Computing & Optimization 2023). Modeling the effects of economic growth on employment and forest area in sub-Saharan African countries using a semi-parametric regression technique.</p>
+                </div>
+                <div class="resume-item">
+                    <p>Boateng A., Odoom C, Maposa D., Owusu, S.A. (Under review). Optimizing Binary Classification Performance in Neural Networks: A Comparative Study of Activation Functions.</p>
+                </div>
+                <div class="resume-item">
+                    <p>Odoom, C., Boateng, A., Folitse, D. (under-review). Modeling the Relationship between Health Expenditure and Mortality Rates in Africa: A Comparative Study using Fixed Effect Panel Regression and Penalized Cubic Spline Models.</p>
+                </div>
+                <div class="resume-item">
+                    <p>Non-parametric derivative estimation with penalized b-splines: asymptotics and an improved estimator. (Ongoing)</p>
+                </div>
+            </div>
+
+            <div class="resume-section">
+                <h2>Conferences & Presentations</h2>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <h3>The 37th New England Statistics Symposium</h3>
+                        <p class="date">May 2024</p>
+                    </div>
+                    <p class="institution">University of Connecticut</p>
+                    <p>A poster presentation on non-parametric derivative estimation with penalized b-splines: asymptotics, an improved estimator and Applications.</p>
+                </div>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <h3>The 3rd New England Student Research Symposium on Statistics and Data Science</h3>
+                        <p class="date">March 2024</p>
+                    </div>
+                    <p class="institution">University of Boston</p>
+                    <p>A poster presentation on non-parametric derivative estimation with penalized b-splines: asymptotics and an improved estimator.</p>
+                </div>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <h3>Statistical Consulting</h3>
+                        <p class="date">March 2024</p>
+                    </div>
+                    <p class="institution">University of Massachusetts, Amherst</p>
+                    <p>Presentation on Power analysis in statistical Studies.</p>
+                </div>
+            </div>
+
+            <div class="resume-section">
+                <h2>Projects</h2>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <h3>A Bayesian simulation: A case of misspecified likelihood</h3>
+                        <p class="date">May 2024</p>
+                    </div>
+                    <p>Simulate and compare distributions and survival curves for different specifications of the likelihood function using the Bayesian Approach. Different posterior sampling techniques, including Gibbs and Metropolis Hasting, were considered.</p>
+                </div>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <h3>Multivariate analysis of bike rental system and the effect of non-normal errors on regression inference</h3>
+                        <p class="date">May 2023</p>
+                    </div>
+                    <p>Developed a multivariate multiple linear regression model to understand dynamics in bike rentals.</p>
+                </div>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <h3>Exploring the relationship between Diabetes and its Risk factors using Generalized Additive Models (GAMS)</h3>
+                        <p class="date">May 2023</p>
+                    </div>
+                    <p>Developed a robust model to predict Diabetes status based on risk factors such as body mass index.</p>
+                </div>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <h3>Assessing the time complexity of full and inductive conformal prediction using Python</h3>
+                        <p class="date">December 2022</p>
+                    </div>
+                    <p>Develop a prediction set for classification problems instead of using traditional label prediction.</p>
+                </div>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <h3>A Quasi-Poisson approach in modeling expected goals in the top five soccer leagues in the world</h3>
+                        <p class="date">December 2022</p>
+                    </div>
+                    <p>Developed a Poisson model to understand the factors contributing to the expected number of goals in the top five leagues, which include the English premier league.</p>
+                </div>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <h3>A comparative study of classical regression and Bayesian regression</h3>
+                        <p class="date">September - October 2022</p>
+                    </div>
+                    <p>Investigated the main differences between classical and Bayesian regression via simulation study.</p>
+                </div>
+            </div>
+
+            <div class="resume-section">
+                <h2>Modeling Competitions</h2>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <h3>Traveler's Modeling Competition (Kaggle)</h3>
+                        <p class="date">October - November 2023</p>
+                    </div>
+                    <p>Predictive model for claim cost with right-skewed claim cost distribution.</p>
+                </div>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <h3>37th New England Statistics Symposium poster presentation competition</h3>
+                        <p class="date">May 2024</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="resume-section">
+                <h2>Professional Experience</h2>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <h3>Graduate Research Assistant</h3>
+                        <p class="date">May 2024 - Present</p>
+                    </div>
+                    <p class="institution">University of Massachusetts, Amherst, US</p>
+                    <p>Work on non-parametric derivative estimation with penalized b-splines: asymptotics and an improved estimator. (Ongoing)</p>
+                </div>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <h3>Student Statistical Consultant</h3>
+                        <p class="date">September 2023 - May 2024</p>
+                    </div>
+                    <p class="institution">Department of Mathematics and Statistics, University of Massachusetts, Amherst, US</p>
+                </div>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <h3>R Tutor</h3>
+                        <p class="date">September 2023 - December 2023</p>
+                    </div>
+                    <p class="institution">R Tutoring Centre, Department of Mathematics and Statistics, University of Massachusetts, Amherst, US</p>
+                </div>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <h3>Graduate Teaching Assistant</h3>
+                        <p class="date">September 2022 - May 2024</p>
+                    </div>
+                    <p class="institution">University of Massachusetts, Amherst, US</p>
+                    <ul>
+                        <li>Led discussion sections by explaining statistical concepts to students.</li>
+                        <li>Introduced advanced Excel tricks to students.</li>
+                    </ul>
+                </div>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <h3>Teaching and Research Assistant</h3>
+                        <p class="date">2021 - 2022</p>
+                    </div>
+                    <p class="institution">Kwame Nkrumah University of Science and Technology, Kumasi, Ghana</p>
+                    <ul>
+                        <li>Assisted in a research project focused on alcohol and drug misuse in South Africa.</li>
+                        <li>Conducted literature reviews, gathered relevant data, and performed statistical analyses.</li>
+                        <li>Presented research findings for publication.</li>
+                    </ul>
+                </div>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <h3>Intern Data Scientist</h3>
+                        <p class="date">August 2019 - November 2019</p>
+                    </div>
+                    <p class="institution">Gomoa Central District Assembly, Ghana</p>
+                    <p>Involved in district data collection and manipulation.</p>
+                </div>
+            </div>
+
+            <div class="resume-section">
+                <h2>Awards and Honors</h2>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <h3>Best Student Poster Award</h3>
+                        <p class="date">May 2024</p>
+                    </div>
+                    <p>In honor of the outstanding virtual poster and oral speedy presentation presented at the 37th New England Statistics Symposium, May 20-24, 2024</p>
+                </div>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <h3>Best graduating student in the Department of Statistics and Actuarial Science</h3>
+                        <p class="date">2021</p>
+                    </div>
+                    <p class="institution">Kwame Nkrumah University of Science and Technology, Kumasi, Ghana</p>
+                </div>
+                <div class="resume-item">
+                    <div class="resume-item-header">
+                        <h3>Three times best male student in statistics</h3>
+                        <p class="date">2018, 2019, 2020</p>
+                    </div>
+                    <p class="institution">Kwame Nkrumah University of Science and Technology, Kumasi, Ghana</p>
+                </div>
+            </div>
+
+            <div class="resume-section">
+                <h2>Certifications</h2>
+                <div class="resume-item">
+                    <ul class="certification-list">
+                        <li>Machine Learning with R - IBM cognitive class</li>
+                        <li>Python for Data Science - IBM cognitive class</li>
+                        <li>Excel: avoiding common mistakes Office 365/Excel 2019 - LinkedIn Learning</li>
+                        <li>Data Science Tools - IBM cognitive class</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="resume-section">
+                <h2>Skills</h2>
+                <div class="resume-item">
+                    <ul class="skills-list">
+                        <li><strong>Statistical Software:</strong> Proficient in R and Python.</li>
+                        <li><strong>Data Analysis:</strong> Expert in semi-parametric regression, particularly generalized additive modeling.</li>
+                        <li><strong>Programming:</strong> Familiar with MATLAB and SQL.</li>
+                        <li><strong>Data Visualization:</strong> Very proficient with tidyverse (data manipulations R), ggplot2(R), matplotlib (Python), and Seaborn (Python).</li>
+                        <li><strong>Communication:</strong> Excellent at conveying complex statistical concepts.</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="resume-section">
+                <h2>References</h2>
+                <div class="resume-item">
+                    <h3>Professor John Staudenmayer</h3>
+                    <p class="institution">Department of Mathematics and Statistics, University of Massachusetts, Amherst</p>
+                    <p><a href="mailto:jstauden@umass.edu">jstauden@umass.edu</a></p>
+                </div>
+                <div class="resume-item">
+                    <h3>Dr. Alexander Boateng</h3>
+                    <p class="institution">Department of Mathematics and Computer Science, Modern College of Business and Science, Muscat, Sultanate of Oman</p>
+                    <p><a href="mailto:siralexboateng@gmail.com">siralexboateng@gmail.com</a></p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> Christopher Odoom. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // PDF Export
+            document.getElementById('download-pdf').addEventListener('click', function() {
+                const resumeContent = document.getElementById('resume-content');
+                const exportButtons = document.querySelector('.resume-actions');
+                
+                // Hide the export buttons for PDF generation
+                exportButtons.style.display = 'none';
+                
+                const options = {
+                    margin: [15, 15],
+                    filename: 'Christopher_Odoom_Resume.pdf',
+                    image: { type: 'jpeg', quality: 0.98 },
+                    html2canvas: { scale: 2 },
+                    jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                };
+                
+                html2pdf().set(options).from(resumeContent).save().then(() => {
+                    // Show export buttons again after PDF is generated
+                    exportButtons.style.display = 'block';
+                });
+            });
+            
+            // Word Export (simplified approach)
+            document.getElementById('download-word').addEventListener('click', function() {
+                const content = document.getElementById('resume-content').innerHTML;
+                const blob = new Blob([
+                    '<html xmlns:o="urn:schemas-microsoft-com:office:office" xmlns:w="urn:schemas-microsoft-com:office:word" xmlns="http://www.w3.org/TR/REC-html40">' +
+                    '<head><meta charset="utf-8"><title>Christopher Odoom Resume</title></head>' +
+                    '<body>' + content + '</body></html>'
+                ], { type: 'application/msword' });
+                
+                const link = document.createElement('a');
+                link.href = URL.createObjectURL(blob);
+                link.download = 'Christopher_Odoom_Resume.doc';
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+            });
+        });
+    </script>
+</body>
+</html> 

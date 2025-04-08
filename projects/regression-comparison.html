@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Classical vs. Bayesian Regression | Christopher Odoom</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <style>
+        .project-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .project-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .project-date {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .project-section {
+            margin-bottom: 40px;
+        }
+        
+        .project-section h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .code-block {
+            background-color: #282c34;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        
+        .results-image {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 40px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .back-link i {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="name-corner">Christopher Odoom</div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#projects">Projects</a></li>
+                    <li><a href="../index.html#presentations">Presentations</a></li>
+                    <li><a href="../index.html#publications">Publications</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                    <li><a href="../resume.html" class="highlight-link">Resume</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="project-container">
+            <div class="project-header">
+                <h1>Classical vs. Bayesian Regression</h1>
+                <p class="project-date">October 2022</p>
+            </div>
+            
+            <div class="project-section">
+                <h2>Project Overview</h2>
+                <p>
+                    This project investigates the similarities and differences between classical (frequentist) and Bayesian
+                    approaches to regression analysis through simulation studies. While both approaches aim to estimate
+                    relationships between variables, they differ fundamentally in their philosophical foundations and
+                    practical implementations.
+                </p>
+                <p>
+                    The study explores how these differences manifest in parameter estimation, uncertainty quantification,
+                    and prediction under various data conditions. Through controlled simulations, I evaluated the performance
+                    of both approaches across different sample sizes, noise levels, and model misspecifications.
+                </p>
+            </div>
+            
+            <div class="project-section">
+                <h2>Methodology</h2>
+                <p>
+                    The methodology for this project included:
+                </p>
+                <ol>
+                    <li>Generation of synthetic datasets with known parameters under different conditions</li>
+                    <li>Implementation of classical regression using ordinary least squares (OLS)</li>
+                    <li>Implementation of Bayesian regression with various prior specifications</li>
+                    <li>Comparison of point estimates, interval estimates, and predictive performance</li>
+                    <li>Analysis of robustness to violations of assumptions</li>
+                    <li>Assessment of computational efficiency and practical considerations</li>
+                </ol>
+                <p>
+                    For the Bayesian implementation, I explored both conjugate priors (which allow for analytical solutions)
+                    and more flexible prior specifications that required Markov Chain Monte Carlo (MCMC) sampling. This allowed
+                    for a comprehensive comparison of different approaches within the Bayesian framework itself.
+                </p>
+            </div>
+            
+            <div class="project-section">
+                <h2>R Code Implementation</h2>
+                <p>
+                    The following code demonstrates the implementation of classical and Bayesian regression models:
+                </p>
+                <div class="code-block">
+                    <pre><code class="language-r"># Load necessary libraries
+library(rstanarm)  # For Bayesian regression
+library(bayesplot)
+library(ggplot2)
+library(dplyr)
+
+# Function to generate synthetic data
+generate_data <- function(n_samples, beta_true, sigma, x_range = c(-3, 3)) {
+  # Generate predictor variables
+  X <- matrix(runif(n_samples * length(beta_true), 
+                   min = x_range[1], max = x_range[2]), 
+             nrow = n_samples)
+  
+  # Generate response variable with noise
+  y <- X %*% beta_true + rnorm(n_samples, mean = 0, sd = sigma)
+  
+  # Return as data frame
+  data.frame(y = y, X)
+}
+
+# Simulation parameters
+set.seed(123)
+n_samples <- 100
+beta_true <- c(2.5, 1.5, -0.5)  # Intercept, X1, X2
+sigma_true <- 2
+variable_names <- c("Intercept", "X1", "X2")
+
+# Generate data
+sim_data <- generate_data(n_samples, beta_true, sigma_true)
+colnames(sim_data) <- c("y", "X1", "X2")
+
+# Fit classical regression model
+classical_model <- lm(y ~ X1 + X2, data = sim_data)
+classical_summary <- summary(classical_model)
+
+# Extract classical estimates and confidence intervals
+classical_coef <- coef(classical_model)
+classical_se <- classical_summary$coefficients[, "Std. Error"]
+classical_ci <- confint(classical_model, level = 0.95)
+classical_sigma <- classical_summary$sigma
+
+# Fit Bayesian regression model with weakly informative priors
+bayesian_model <- stan_glm(y ~ X1 + X2, 
+                          data = sim_data,
+                          family = gaussian(),
+                          prior = normal(0, 10),
+                          prior_intercept = normal(0, 10),
+                          prior_aux = cauchy(0, 5),
+                          chains = 4,
+                          iter = 2000,
+                          seed = 123)
+
+# Extract Bayesian estimates and credible intervals
+bayesian_summary <- summary(bayesian_model)
+bayesian_coef <- bayesian_summary$coefficients[, "mean"]
+bayesian_ci <- posterior_interval(bayesian_model, prob = 0.95)
+bayesian_sigma <- mean(as.matrix(bayesian_model)[, "sigma"])
+
+# Compare results
+comparison_df <- data.frame(
+  Parameter = c(variable_names, "Sigma"),
+  True_Value = c(beta_true, sigma_true),
+  Classical_Estimate = c(classical_coef, classical_sigma),
+  Classical_Lower = c(classical_ci[, 1], NA),
+  Classical_Upper = c(classical_ci[, 2], NA),
+  Bayesian_Estimate = c(bayesian_coef, bayesian_sigma),
+  Bayesian_Lower = c(bayesian_ci[, 1], NA),
+  Bayesian_Upper = c(bayesian_ci[, 2], NA)
+)
+
+# Print comparison
+print(comparison_df)</code></pre>
+                </div>
+                <p>
+                    The code for comparing performance across different data conditions:
+                </p>
+                <div class="code-block">
+                    <pre><code class="language-r"># Function to run simulation for different conditions
+run_simulation <- function(n_samples_list, n_reps, beta_true, sigma) {
+  results <- data.frame()
+  
+  for (n in n_samples_list) {
+    for (rep in 1:n_reps) {
+      # Generate data
+      sim_data <- generate_data(n, beta_true, sigma)
+      colnames(sim_data) <- c("y", "X1", "X2")
+      
+      # Fit models
+      classical_model <- lm(y ~ X1 + X2, data = sim_data)
+      
+      # Fit Bayesian model
+      bayesian_model <- stan_glm(y ~ X1 + X2, 
+                                data = sim_data,
+                                family = gaussian(),
+                                prior = normal(0, 10),
+                                prior_intercept = normal(0, 10),
+                                prior_aux = cauchy(0, 5),
+                                chains = 4,
+                                iter = 2000,
+                                refresh = 0,  # Suppress output
+                                seed = 123 + rep)
+      
+      # Extract estimates
+      classical_coef <- coef(classical_model)
+      bayesian_coef <- bayesian_summary$coefficients[, "mean"]
+      
+      # Calculate error metrics
+      classical_mse <- mean((beta_true - classical_coef)^2)
+      bayesian_mse <- mean((beta_true - bayesian_coef)^2)
+      
+      # Save results
+      results <- rbind(results, data.frame(
+        n_samples = n,
+        rep = rep,
+        classical_mse = classical_mse,
+        bayesian_mse = bayesian_mse
+      ))
+    }
+  }
+  
+  return(results)
+}
+
+# Run simulation for different sample sizes
+n_samples_list <- c(20, 50, 100, 200, 500)
+n_reps <- 10  # Reduced for demonstration, use more for actual analysis
+sim_results <- run_simulation(n_samples_list, n_reps, beta_true, sigma_true)
+
+# Summarize results
+summary_results <- sim_results %>%
+  group_by(n_samples) %>%
+  summarize(
+    classical_mse_mean = mean(classical_mse),
+    bayesian_mse_mean = mean(bayesian_mse),
+    classical_mse_sd = sd(classical_mse),
+    bayesian_mse_sd = sd(bayesian_mse)
+  )
+
+# Visualize performance comparison
+ggplot(summary_results, aes(x = n_samples)) +
+  geom_line(aes(y = classical_mse_mean, color = "Classical")) +
+  geom_line(aes(y = bayesian_mse_mean, color = "Bayesian")) +
+  geom_ribbon(aes(ymin = classical_mse_mean - classical_mse_sd,
+                 ymax = classical_mse_mean + classical_mse_sd,
+                 fill = "Classical"), alpha = 0.2) +
+  geom_ribbon(aes(ymin = bayesian_mse_mean - bayesian_mse_sd,
+                 ymax = bayesian_mse_mean + bayesian_mse_sd,
+                 fill = "Bayesian"), alpha = 0.2) +
+  scale_color_manual(values = c("Classical" = "blue", "Bayesian" = "red")) +
+  scale_fill_manual(values = c("Classical" = "blue", "Bayesian" = "red")) +
+  labs(
+    title = "MSE Comparison by Sample Size",
+    x = "Sample Size",
+    y = "Mean Squared Error",
+    color = "Method",
+    fill = "Method"
+  ) +
+  theme_minimal()</code></pre>
+                </div>
+            </div>
+            
+            <div class="project-section">
+                <h2>Results</h2>
+                <p>
+                    The comparative analysis of classical and Bayesian regression revealed several key findings:
+                </p>
+                <ul>
+                    <li>With large sample sizes and well-specified models, both approaches converged to similar parameter estimates</li>
+                    <li>With small sample sizes, Bayesian models with informative priors provided more stable estimates</li>
+                    <li>Classical confidence intervals and Bayesian credible intervals have fundamentally different interpretations</li>
+                    <li>Bayesian models offered more intuitive quantification of parameter uncertainty</li>
+                    <li>In the presence of outliers, robust Bayesian models showed better performance than standard OLS</li>
+                </ul>
+                
+                <p>Comparison of parameter estimates by sample size:</p>
+                
+                <!-- Placeholder for project images - replace with actual results images -->
+                <div class="results-image" style="background-color: #f0f0f0; height: 300px; display: flex; align-items: center; justify-content: center;">
+                    <p>[Parameter estimate comparison plot would appear here]</p>
+                </div>
+                
+                <p>Posterior distributions for key parameters:</p>
+                
+                <div class="results-image" style="background-color: #f0f0f0; height: 300px; display: flex; align-items: center; justify-content: center;">
+                    <p>[Posterior distribution plot would appear here]</p>
+                </div>
+            </div>
+            
+            <div class="project-section">
+                <h2>Conclusions</h2>
+                <p>
+                    This project highlighted the complementary nature of classical and Bayesian approaches to regression:
+                </p>
+                <ul>
+                    <li>Classical methods offer computational simplicity and well-established theoretical properties</li>
+                    <li>Bayesian methods provide a natural framework for incorporating prior knowledge and quantifying uncertainty</li>
+                    <li>The choice between approaches should be guided by sample size, prior knowledge, and specific inference goals</li>
+                    <li>Hybrid approaches that leverage strengths of both paradigms may offer optimal solutions in many cases</li>
+                </ul>
+                <p>
+                    The simulation study demonstrated that while classical and Bayesian methods often yield similar point estimates,
+                    the Bayesian approach offers advantages in terms of uncertainty quantification and incorporation of external knowledge.
+                    These insights are valuable for researchers deciding between methodological approaches for specific applications.
+                </p>
+            </div>
+            
+            <a href="../index.html#projects" class="back-link"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> Christopher Odoom. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html> 

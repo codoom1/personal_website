@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bayesian Simulation: Misspecified Likelihood | Christopher Odoom</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <style>
+        .project-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .project-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .project-date {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .project-section {
+            margin-bottom: 40px;
+        }
+        
+        .project-section h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .code-block {
+            background-color: #282c34;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        
+        .results-image {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 40px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .back-link i {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="name-corner">Christopher Odoom</div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#projects">Projects</a></li>
+                    <li><a href="../index.html#presentations">Presentations</a></li>
+                    <li><a href="../index.html#publications">Publications</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                    <li><a href="../resume.html" class="highlight-link">Resume</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="project-container">
+            <div class="project-header">
+                <h1>Bayesian Simulation: Misspecified Likelihood</h1>
+                <p class="project-date">May 2024</p>
+            </div>
+            
+            <div class="project-section">
+                <h2>Project Overview</h2>
+                <p>
+                    This project explores the effects of misspecified likelihood functions in Bayesian statistical analysis. 
+                    Through simulation studies, I compare how different specifications of the likelihood function affect 
+                    posterior distributions and survival curve estimates.
+                </p>
+                <p>
+                    The simulation includes implementations of several posterior sampling techniques, including Gibbs sampling 
+                    and the Metropolis-Hastings algorithm, to demonstrate their performance under various conditions.
+                </p>
+            </div>
+            
+            <div class="project-section">
+                <h2>Methodology</h2>
+                <p>
+                    For this simulation study, I used the following approach:
+                </p>
+                <ol>
+                    <li>Generated synthetic data from known distributions</li>
+                    <li>Applied different likelihood specifications (correctly specified and misspecified)</li>
+                    <li>Implemented both Gibbs sampling and Metropolis-Hastings algorithms</li>
+                    <li>Compared posterior distributions across different specifications</li>
+                    <li>Evaluated impacts on survival curve estimation</li>
+                </ol>
+                <p>
+                    The primary metrics for comparison included posterior mean estimates, credible intervals, 
+                    and mean squared error between the estimated and true survival curves.
+                </p>
+            </div>
+            
+            <div class="project-section">
+                <h2>R Code Implementation</h2>
+                <p>
+                    Below is a sample of the R code used to implement the Metropolis-Hastings algorithm for one of the model specifications:
+                </p>
+                <div class="code-block">
+                    <pre><code class="language-r"># Metropolis-Hastings implementation for exponential likelihood
+metropolis_hastings <- function(data, n_iter, proposal_sd, prior_mean, prior_sd) {
+  # Initialize
+  theta_current <- mean(data)  # Starting value
+  theta_samples <- numeric(n_iter)
+  
+  # Metropolis-Hastings algorithm
+  for (i in 1:n_iter) {
+    # Propose new value
+    theta_proposal <- rnorm(1, mean = theta_current, sd = proposal_sd)
+    
+    # Skip negative proposals for rate parameter
+    if (theta_proposal <= 0) {
+      theta_samples[i] <- theta_current
+      next
+    }
+    
+    # Calculate log posterior ratios
+    log_post_current <- sum(dexp(data, rate = theta_current, log = TRUE)) + 
+                         dnorm(theta_current, mean = prior_mean, sd = prior_sd, log = TRUE)
+    log_post_proposal <- sum(dexp(data, rate = theta_proposal, log = TRUE)) + 
+                         dnorm(theta_proposal, mean = prior_mean, sd = prior_sd, log = TRUE)
+    
+    # Calculate acceptance probability
+    log_accept_prob <- log_post_proposal - log_post_current
+    
+    # Accept or reject
+    if (log(runif(1)) < log_accept_prob) {
+      theta_current <- theta_proposal  # Accept
+    }
+    
+    # Store current value
+    theta_samples[i] <- theta_current
+  }
+  
+  return(theta_samples)
+}</code></pre>
+                </div>
+                <p>
+                    The code for survival curve estimation:
+                </p>
+                <div class="code-block">
+                    <pre><code class="language-r"># Calculate survival curves based on posterior samples
+calculate_survival_curves <- function(theta_samples, time_points) {
+  n_samples <- length(theta_samples)
+  n_times <- length(time_points)
+  survival_curves <- matrix(0, nrow = n_samples, ncol = n_times)
+  
+  # Calculate survival probability for each time point and each posterior sample
+  for (i in 1:n_samples) {
+    theta <- theta_samples[i]
+    survival_curves[i, ] <- exp(-theta * time_points)
+  }
+  
+  # Calculate mean and credible intervals
+  mean_curve <- colMeans(survival_curves)
+  lower_ci <- apply(survival_curves, 2, quantile, probs = 0.025)
+  upper_ci <- apply(survival_curves, 2, quantile, probs = 0.975)
+  
+  return(list(
+    time = time_points,
+    mean = mean_curve,
+    lower = lower_ci,
+    upper = upper_ci
+  ))
+}</code></pre>
+                </div>
+            </div>
+            
+            <div class="project-section">
+                <h2>Results</h2>
+                <p>
+                    The simulation study revealed several key findings:
+                </p>
+                <ul>
+                    <li>Misspecified likelihood functions led to biased posterior estimates</li>
+                    <li>The magnitude of bias increased with greater departure from the true data-generating process</li>
+                    <li>Survival curve estimates were more sensitive to likelihood misspecification than parameter estimates</li>
+                    <li>The Metropolis-Hastings algorithm demonstrated better mixing properties for complex likelihood specifications</li>
+                </ul>
+                
+                <p>Below is a visualization of posterior distributions under different likelihood specifications:</p>
+                
+                <!-- Placeholder for project images - replace with actual results images -->
+                <div class="results-image" style="background-color: #f0f0f0; height: 300px; display: flex; align-items: center; justify-content: center;">
+                    <p>[Posterior distribution comparison plot would appear here]</p>
+                </div>
+                
+                <p>Comparison of estimated survival curves:</p>
+                
+                <div class="results-image" style="background-color: #f0f0f0; height: 300px; display: flex; align-items: center; justify-content: center;">
+                    <p>[Survival curves comparison plot would appear here]</p>
+                </div>
+            </div>
+            
+            <div class="project-section">
+                <h2>Conclusions</h2>
+                <p>
+                    This simulation study demonstrates the importance of correctly specifying likelihood functions in Bayesian analysis.
+                    Key conclusions include:
+                </p>
+                <ul>
+                    <li>Misspecified likelihoods can lead to systematically biased inference</li>
+                    <li>The choice of sampling algorithm can impact the quality of posterior approximation</li>
+                    <li>When the true data-generating process is unknown, model checking and sensitivity analysis are essential</li>
+                    <li>Even with misspecified likelihoods, Bayesian methods can provide useful inference if the degree of misspecification is moderate</li>
+                </ul>
+                <p>
+                    Future work could explore more robust approaches to handling model misspecification in Bayesian analysis,
+                    including the use of non-parametric priors or mixture models to accommodate a wider range of data-generating processes.
+                </p>
+            </div>
+            
+            <a href="../index.html#projects" class="back-link"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> Christopher Odoom. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html> 

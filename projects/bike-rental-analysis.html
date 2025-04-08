@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Multivariate Analysis of Bike Rental Systems | Christopher Odoom</title>
+    <link rel="stylesheet" href="../styles.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/styles/atom-one-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.7.0/highlight.min.js"></script>
+    <script>hljs.highlightAll();</script>
+    <style>
+        .project-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .project-header {
+            margin-bottom: 40px;
+            text-align: center;
+        }
+        
+        .project-date {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+        
+        .project-section {
+            margin-bottom: 40px;
+        }
+        
+        .project-section h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary);
+            padding-bottom: 10px;
+            margin-bottom: 20px;
+        }
+        
+        .code-block {
+            background-color: #282c34;
+            border-radius: 5px;
+            padding: 20px;
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+        
+        .results-image {
+            max-width: 100%;
+            height: auto;
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+        }
+        
+        .back-link {
+            display: inline-block;
+            margin-top: 40px;
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .back-link i {
+            margin-right: 5px;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-container">
+            <div class="name-corner">Christopher Odoom</div>
+            <nav>
+                <ul>
+                    <li><a href="../index.html#about">About</a></li>
+                    <li><a href="../index.html#projects">Projects</a></li>
+                    <li><a href="../index.html#presentations">Presentations</a></li>
+                    <li><a href="../index.html#publications">Publications</a></li>
+                    <li><a href="../index.html#contact">Contact</a></li>
+                    <li><a href="../resume.html" class="highlight-link">Resume</a></li>
+                </ul>
+            </nav>
+            <div class="mobile-menu-toggle">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </header>
+
+    <section class="section">
+        <div class="project-container">
+            <div class="project-header">
+                <h1>Multivariate Analysis of Bike Rental Systems</h1>
+                <p class="project-date">May 2023</p>
+            </div>
+            
+            <div class="project-section">
+                <h2>Project Overview</h2>
+                <p>
+                    This project investigates bike rental patterns using multivariate analysis techniques. I developed a
+                    multivariate multiple linear regression model to understand how various factors influence bike rental
+                    dynamics, while also examining the effects of non-normal errors on regression inference.
+                </p>
+                <p>
+                    The study explores how weather conditions, calendar events, and time-related factors collectively
+                    affect bike sharing systems, with a focus on modeling complex relationships between predictors and
+                    multiple response variables.
+                </p>
+            </div>
+            
+            <div class="project-section">
+                <h2>Methodology</h2>
+                <p>
+                    The methodology for this project involved:
+                </p>
+                <ol>
+                    <li>Data collection and preprocessing of bike rental records</li>
+                    <li>Exploratory data analysis to identify key patterns and relationships</li>
+                    <li>Development of multivariate multiple regression models</li>
+                    <li>Assessment of model assumptions, particularly focusing on non-normal error distributions</li>
+                    <li>Evaluation of prediction accuracy and model robustness</li>
+                </ol>
+                <p>
+                    I implemented a semi-parametric approach that allowed for flexible modeling of both linear and
+                    non-linear relationships in the data, while accounting for potential violations of standard regression
+                    assumptions.
+                </p>
+            </div>
+            
+            <div class="project-section">
+                <h2>R Code Implementation</h2>
+                <p>
+                    The following code demonstrates the implementation of a multivariate multiple regression model:
+                </p>
+                <div class="code-block">
+                    <pre><code class="language-r"># Load necessary libraries
+library(car)
+library(MASS)
+library(ggplot2)
+library(dplyr)
+library(mgcv)
+library(readr)
+
+# Load and prepare dataset
+bike_data <- read_csv("bike_sharing.csv")
+
+# Data preprocessing
+bike_data <- bike_data %>%
+  mutate(
+    season = as.factor(season),
+    holiday = as.factor(holiday),
+    workingday = as.factor(workingday),
+    weather = as.factor(weather),
+    # Convert date and extract time features
+    date = as.Date(dteday),
+    month = factor(format(date, "%m")),
+    dayofweek = factor(weekdays(date))
+  )
+
+# Create multivariate response variable (casual and registered users)
+Y <- as.matrix(bike_data[, c("casual", "registered")])
+
+# Create design matrix for predictors
+X <- model.matrix(~ temp + atemp + humidity + windspeed + 
+                  season + holiday + workingday + dayofweek, data = bike_data)
+
+# Fit multivariate multiple regression model
+mmr_model <- lm(Y ~ X - 1)  # -1 to exclude intercept already in X
+
+# Summary of the model
+summary(mmr_model)
+
+# Test for multivariate normality of errors
+mshapiro.test(residuals(mmr_model))</code></pre>
+                </div>
+                <p>
+                    The following code explores the impact of non-normal errors on regression inference:
+                </p>
+                <div class="code-block">
+                    <pre><code class="language-r"># Function to simulate data with different error distributions
+simulate_nonormal_errors <- function(n, distribution, parameters) {
+  # Create predictors
+  X1 <- rnorm(n, mean = 0, sd = 1)
+  X2 <- rnorm(n, mean = 0, sd = 1)
+  
+  # True coefficients
+  beta0 <- 2
+  beta1 <- 1.5
+  beta2 <- -0.8
+  
+  # Generate errors based on specified distribution
+  if (distribution == "normal") {
+    errors <- rnorm(n, mean = 0, sd = parameters$sd)
+  } else if (distribution == "t") {
+    errors <- rt(n, df = parameters$df) * parameters$scale
+  } else if (distribution == "skewed") {
+    errors <- rchisq(n, df = parameters$df) - parameters$df
+  }
+  
+  # Generate response
+  Y <- beta0 + beta1 * X1 + beta2 * X2 + errors
+  
+  # Return data
+  data.frame(Y = Y, X1 = X1, X2 = X2)
+}
+
+# Run simulation with different error distributions
+set.seed(123)
+normal_data <- simulate_nonormal_errors(1000, "normal", list(sd = 1))
+t_data <- simulate_nonormal_errors(1000, "t", list(df = 3, scale = 1))
+skewed_data <- simulate_nonormal_errors(1000, "skewed", list(df = 3))
+
+# Fit models to each dataset
+normal_model <- lm(Y ~ X1 + X2, data = normal_data)
+t_model <- lm(Y ~ X1 + X2, data = t_data)
+skewed_model <- lm(Y ~ X1 + X2, data = skewed_data)
+
+# Compare coefficient estimates and standard errors
+models_comparison <- data.frame(
+  Distribution = c("Normal", "t", "Skewed"),
+  Intercept = c(coef(normal_model)[1], coef(t_model)[1], coef(skewed_model)[1]),
+  X1 = c(coef(normal_model)[2], coef(t_model)[2], coef(skewed_model)[2]),
+  X2 = c(coef(normal_model)[3], coef(t_model)[3], coef(skewed_model)[3]),
+  SE_Intercept = c(summary(normal_model)$coef[1,2], 
+                   summary(t_model)$coef[1,2], 
+                   summary(skewed_model)$coef[1,2]),
+  SE_X1 = c(summary(normal_model)$coef[2,2], 
+            summary(t_model)$coef[2,2], 
+            summary(skewed_model)$coef[2,2]),
+  SE_X2 = c(summary(normal_model)$coef[3,2], 
+            summary(t_model)$coef[3,2], 
+            summary(skewed_model)$coef[3,2])
+)
+
+# Print comparison table
+print(models_comparison)</code></pre>
+                </div>
+            </div>
+            
+            <div class="project-section">
+                <h2>Results</h2>
+                <p>
+                    The analysis yielded several key findings:
+                </p>
+                <ul>
+                    <li>Temperature and season were the strongest predictors of bike rental patterns</li>
+                    <li>Casual and registered users showed distinct usage patterns, justifying the multivariate approach</li>
+                    <li>Non-normal errors significantly affected coefficient standard errors and confidence intervals</li>
+                    <li>The semi-parametric model outperformed standard linear models in prediction accuracy</li>
+                </ul>
+                
+                <p>Visualization of the relationship between temperature and bike rentals:</p>
+                
+                <!-- Placeholder for project images - replace with actual results images -->
+                <div class="results-image" style="background-color: #f0f0f0; height: 300px; display: flex; align-items: center; justify-content: center;">
+                    <p>[Temperature vs. Rentals plot would appear here]</p>
+                </div>
+                
+                <p>Comparison of error distributions and their impact on regression inference:</p>
+                
+                <div class="results-image" style="background-color: #f0f0f0; height: 300px; display: flex; align-items: center; justify-content: center;">
+                    <p>[Error distribution comparison would appear here]</p>
+                </div>
+            </div>
+            
+            <div class="project-section">
+                <h2>Conclusions</h2>
+                <p>
+                    This project demonstrated the value of multivariate analysis in understanding complex systems like bike rentals.
+                    Key conclusions include:
+                </p>
+                <ul>
+                    <li>Multivariate models capture interdependencies between different user types that would be missed in separate univariate analyses</li>
+                    <li>Non-normal errors can substantially bias inference if not properly addressed</li>
+                    <li>Semi-parametric approaches provide flexibility for modeling non-linear relationships</li>
+                    <li>Weather variables exhibit complex, non-linear relationships with rental patterns that are better captured with advanced modeling techniques</li>
+                </ul>
+                <p>
+                    This work contributed to a published paper in Scientific African, providing insights for bike-sharing 
+                    system operators to optimize fleet management based on predicted usage patterns.
+                </p>
+            </div>
+            
+            <a href="../index.html#projects" class="back-link"><i class="fas fa-arrow-left"></i> Back to Projects</a>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; <span id="year"></span> Christopher Odoom. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="../script.js"></script>
+</body>
+</html> 
