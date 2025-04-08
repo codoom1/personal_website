@@ -21,7 +21,7 @@ After creating the repository, GitHub will show you commands to connect your loc
 cd /Users/christopherodoom/Desktop/Myappsfiles/Personal_website
 
 # Set the remote repository URL (replace "yourusername" with your actual GitHub username)
-git remote add origin https://github.com/yourusername/personal_website.git
+git remote add origin https://github.com/codoom1/personal_website.git
 
 # Push your code to GitHub
 # You'll be prompted for your GitHub username and password
