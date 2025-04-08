@@ -45,19 +45,19 @@ img {
 header {
     background-color: var(--primary);
     color: white;
-    padding: 60px 0 20px;
+    padding: 15px 0;
     text-align: center;
 }
 
-header h1 {
-    font-size: 3rem;
-    margin-bottom: 10px;
+.header-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
 }
 
-header .subtitle {
-    font-size: 1.2rem;
-    margin-bottom: 30px;
-    font-weight: 300;
+.name-corner {
+    font-weight: 600;
+    font-size: 1.1rem;
 }
 
 nav ul {
@@ -65,6 +65,7 @@ nav ul {
     justify-content: center;
     list-style: none;
     flex-wrap: wrap;
+    margin: 0;
 }
 
 nav ul li {
@@ -97,6 +98,10 @@ nav ul li a:hover::after {
 /* Sections */
 .section {
     padding: 80px 0;
+}
+
+#about {
+    padding-top: 0;
 }
 
 .section:nth-child(odd) {
@@ -147,6 +152,27 @@ nav ul li a:hover::after {
     margin: 0 auto;
 }
 
+.education-summary {
+    margin-top: 20px;
+    text-align: center;
+    background-color: #f9f4ff;
+    padding: 15px;
+    border-radius: 8px;
+    border-left: 4px solid var(--primary);
+}
+
+.education-summary h3 {
+    color: var(--primary);
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+}
+
+.education-summary p {
+    margin-bottom: 10px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+}
+
 .about-text {
     flex: 2;
     min-width: 300px;
@@ -188,31 +214,6 @@ nav ul li a:hover::after {
 
 .social-links a:hover {
     transform: translateY(-5px);
-}
-
-/* Education Section */
-.education-item {
-    margin-bottom: 40px;
-    padding: 25px;
-    background-color: white;
-    border-radius: 8px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-}
-
-.education-item h3 {
-    color: var(--primary);
-    margin-bottom: 10px;
-}
-
-.education-item .institution {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.education-item .date {
-    color: var(--gray);
-    font-style: italic;
-    margin-bottom: 15px;
 }
 
 /* Projects Section */
@@ -337,7 +338,7 @@ nav ul li a:hover::after {
 
 /* Footer */
 footer {
-    background-color: var(--dark);
+    background-color: purple;
     color: white;
     text-align: center;
     padding: 20px 0;
@@ -351,7 +352,6 @@ footer {
     width: 30px;
     height: 21px;
     cursor: pointer;
-    margin: 0 auto 20px;
 }
 
 .mobile-menu-toggle span {
@@ -365,18 +365,22 @@ footer {
 
 /* Responsive */
 @media (max-width: 768px) {
-    header h1 {
-        font-size: 2.2rem;
-    }
-    
-    header .subtitle {
-        font-size: 1rem;
+    .header-container {
+        flex-direction: column;
+        gap: 10px;
     }
     
     nav ul {
         flex-direction: column;
         gap: 12px;
-        margin-top: 20px;
+        margin-top: 15px;
+    }
+    
+    .mobile-menu-toggle {
+        position: absolute;
+        right: 20px;
+        top: 15px;
+        display: flex;
     }
     
     .section {
@@ -436,10 +440,6 @@ footer {
         gap: 20px;
     }
     
-    .mobile-menu-toggle {
-        display: flex;
-    }
-    
     nav {
         max-height: 0;
         overflow: hidden;
@@ -460,6 +460,19 @@ footer {
     
     .mobile-menu-toggle.active span:nth-child(3) {
         transform: translateY(-9px) rotate(-45deg);
+    }
+    
+    .education-summary {
+        padding: 12px;
+        margin-top: 15px;
+    }
+    
+    .education-summary h3 {
+        font-size: 1.2rem;
+    }
+    
+    .education-summary p {
+        font-size: 0.9rem;
     }
 }
 
@@ -493,4 +506,117 @@ footer {
     .education-item, .project-card, .publication-item {
         padding: 12px;
     }
+}
+
+/* Add this to the existing CSS */
+.highlight-link {
+    border: 2px solid white;
+    border-radius: 4px;
+    padding: 5px 12px !important;
+    background-color: rgba(255, 255, 255, 0.15);
+    transition: background-color 0.3s, transform 0.2s;
+}
+
+.highlight-link:hover {
+    background-color: rgba(255, 255, 255, 0.25);
+    transform: translateY(-2px);
+}
+
+.highlight-link::after {
+    display: none !important;
+}
+
+/* About Section */
+.phd-image-section {
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+.image-placeholder {
+    background-color: #f0e6fa;
+    border: 2px dashed var(--primary);
+    border-radius: 10px;
+    padding: 60px 20px;
+    margin: 0 auto;
+    max-width: 80%;
+}
+
+.image-note {
+    color: var(--primary);
+    font-size: 1.2rem;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.image-prompt {
+    background-color: white;
+    border-left: 4px solid var(--primary);
+    padding: 15px;
+    margin: 0 auto 20px;
+    max-width: 90%;
+    font-size: 1rem;
+    text-align: left;
+    color: #333;
+    border-radius: 5px;
+}
+
+.image-instructions {
+    font-size: 0.9rem;
+    color: #666;
+    font-style: italic;
+}
+
+.phd-hero-image {
+    max-width: 100%;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    margin: 0 auto;
+    display: block;
+}
+
+/* About Section */
+.phd-banner {
+    background-image: linear-gradient(rgba(20, 30, 55, 0.7), rgba(20, 30, 55, 0.7)), url('https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80');
+    background-size: cover;
+    background-position: center;
+    height: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    color: white;
+    text-align: left;
+    position: relative;
+    width: 100vw;
+    margin-left: calc(-50vw + 50%);
+    margin-right: calc(-50vw + 50%);
+    margin-bottom: 40px;
+}
+
+.banner-content {
+    padding: 0 80px;
+    width: 100%;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.banner-title {
+    font-size: 3.5rem;
+    margin-bottom: 20px;
+    font-weight: 700;
+    color: white;
+}
+
+.banner-divider {
+    height: 3px;
+    width: 60px;
+    background-color: #ff7f00;
+    margin-bottom: 20px;
+}
+
+.banner-text {
+    font-size: 1.2rem;
+    line-height: 1.6;
+    font-weight: 300;
+    max-width: 100%;
 } 

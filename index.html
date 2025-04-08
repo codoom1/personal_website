@@ -9,50 +9,64 @@
 </head>
 <body>
     <header>
-        <div class="container">
-            <h1>Christopher Odoom</h1>
-            <p class="subtitle">Ph.D. Student in Statistics</p>
+        <div class="container header-container">
+            <div class="name-corner">Christopher Odoom</div>
+            <nav>
+                <ul>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#projects">Projects</a></li>
+                    <li><a href="#publications">Publications</a></li>
+                    <li><a href="#contact">Contact</a></li>
+                    <li><a href="resume.html" class="highlight-link">Resume</a></li>
+                </ul>
+            </nav>
             <div class="mobile-menu-toggle">
                 <span></span>
                 <span></span>
                 <span></span>
             </div>
-            <nav>
-                <ul>
-                    <li><a href="#about">About</a></li>
-                    <li><a href="#education">Education</a></li>
-                    <li><a href="#projects">Projects</a></li>
-                    <li><a href="#presentations">Presentations</a></li>
-                    <li><a href="#publications">Publications</a></li>
-                    <li><a href="#contact">Contact</a></li>
-                </ul>
-            </nav>
         </div>
     </header>
 
     <section id="about" class="section">
         <div class="container">
+            <!-- PhD Banner Section -->
+            <div class="phd-banner">
+                <div class="banner-content">
+                    <h2 class="banner-title">Welcome!!</h2>
+                    <div class="banner-divider"></div>
+                    <p class="banner-text">Welcome to my personal website! I am a Ph.D. student in 
+                        Statistics at the University of Massachusetts, Amherst. 
+                        My research focuses on non-parametric derivative estimation with penalized B-splines,
+                         including asymptotics and improved estimator development.
+                        </p>
+                </div>
+            </div>
+            
             <h2>About Me</h2>
+            
+            <!-- About Content Section -->
             <div class="about-content">
                 <div class="profile-image">
                     <img src="profile.JPG" alt="Christopher Odoom">
+                    <div class="education-summary">
+                        <p><strong>Christopher odoom <br> Ph.D. Candidate</strong>
+                            <br>
+                            <a href="https://www.umass.edu/mathematics-statistics/about/directory/christopher-odoom">University of Massachusetts, Amherst</a>
+                            <br>2024 - Present</p>
+                    </div>
                 </div>
                 <div class="about-text">
                     <p>
-                        Welcome to my personal website! I am a Ph.D. student in Statistics at the University of Massachusetts, Amherst. 
-                        My research focuses on non-parametric derivative estimation with penalized B-splines, including asymptotics and improved estimator development.
-                    </p>
-                    <p>
-                        With experience in statistical consulting, data science, and R programming, I am passionate about applying 
-                        statistical methods to solve real-world problems. My work spans machine learning, predictive modeling, and 
-                        sustainable development research.
-                    </p>
-                    <p>
-                        I am proficient in multiple programming languages including R, Python, SQL, and LaTeX, with expertise in 
-                        database management and statistical analysis.
+                        My research at UMass Amherst focuses on statistical methods that improve how we estimate relationships in data. I specialize in non-parametric techniques that offer both theoretical rigor and practical applications.
+With experience in statistical consulting and R programming instruction, I help translate complex analytical concepts into practical solutions. My work has been published in scientific journals and recognized at regional symposiums.
+I'm interested in applying statistical expertise to interdisciplinary challenges and welcome collaborative opportunities with academic and industry partners.
                     </p>
                     <div class="github-highlight">
                         <i class="fab fa-github"></i> Check out my projects on <a href="https://github.com/codoom1" target="_blank">GitHub</a>
+                    </div>
+                    <div class="award-highlight">
+                        <i class="fas fa-award"></i> <a href="https://www.umass.edu/mathematics-statistics/news/two-statistics-ms-students-win-poster-awards-2024-new-england-statistics-symposium" target="_blank">Best Student Poster Award - 2024 New England Statistics Symposium</a>
                     </div>
                     <div class="social-links">
                         <a href="https://github.com/codoom1" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
@@ -63,86 +77,62 @@
         </div>
     </section>
 
-    <section id="education" class="section">
-        <div class="container">
-            <h2>Education</h2>
-            <div class="education-item">
-                <h3>Ph.D. in Statistics</h3>
-                <p class="institution">University of Massachusetts, Amherst</p>
-                <p class="date">2024 - Present</p>
-                <p class="description">Thesis topic: "Non-parametric derivative estimation with penalized B-splines: asymptotics and an improved estimator"</p>
-            </div>
-            <div class="education-item">
-                <h3>M.Sc. in Statistics</h3>
-                <p class="institution">University of Massachusetts, Amherst</p>
-                <p class="date">2022 - 2024</p>
-                <p class="description">GPA: 4.0<br>Project: "Predictive model for Flight Delay and its Factors at Phoenix Airport. A Shiny App And R Package-'binaryClass'"</p>
-            </div>
-            <div class="education-item">
-                <h3>B.Sc. in Statistics</h3>
-                <p class="institution">Kwame Nkrumah University of Science and Technology, Kumasi, Ghana</p>
-                <p class="date">2017 - 2021</p>
-                <p class="description">GPA: 3.98<br>Project: "A comparative study of classical and Bayesian regression. Investigated the main differences between classical and Bayesian regression via simulation study."</p>
-            </div>
-        </div>
-    </section>
-
     <section id="projects" class="section">
         <div class="container">
-            <h2>Projects & Experience</h2>
+            <h2>Projects</h2>
             <div class="projects-grid">
                 <div class="project-card">
-                    <h3>GitHub Projects</h3>
-                    <p class="project-description">View my code repositories, statistical packages, and data science projects.</p>
+                    <h3>Bayesian Simulation: Misspecified Likelihood</h3>
+                    <p class="project-date">May 2024</p>
+                    <p class="project-description">Simulation comparing distributions and survival curves for different likelihood function specifications using Bayesian approaches including Gibbs and Metropolis Hasting sampling.</p>
                     <div class="project-links">
-                        <a href="https://github.com/codoom1" target="_blank">View on GitHub <i class="fab fa-github"></i></a>
+                        <a href="projects/bayesian-simulation.html">View Project Details <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
+                
                 <div class="project-card">
-                    <h3>Graduate Research & Teaching Assistant</h3>
-                    <p class="project-date">2024 - Present</p>
-                    <p class="project-description">University of Massachusetts, Amherst</p>
+                    <h3>Multivariate Analysis of Bike Rental Systems</h3>
+                    <p class="project-date">May 2023</p>
+                    <p class="project-description">Developed a multivariate multiple linear regression model to understand dynamics in bike rentals and studied effects of non-normal errors on regression inference.</p>
+                    <div class="project-links">
+                        <a href="projects/bike-rental-analysis.html">View Project Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </div>
+                
                 <div class="project-card">
-                    <h3>Student Statistical Consultant</h3>
-                    <p class="project-date">September 2023 - May 2024</p>
-                    <p class="project-description">Department of Mathematics and Statistics, University of Massachusetts, Amherst</p>
+                    <h3>Diabetes Risk Factors Using GAMs</h3>
+                    <p class="project-date">May 2023</p>
+                    <p class="project-description">Developed a robust Generalized Additive Model to predict diabetes status based on risk factors such as body mass index.</p>
+                    <div class="project-links">
+                        <a href="projects/diabetes-gam.html">View Project Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </div>
+                
                 <div class="project-card">
-                    <h3>R Software Tutor</h3>
-                    <p class="project-date">September 2023 - December 2023</p>
-                    <p class="project-description">Department of Mathematics and Statistics, University of Massachusetts, Amherst</p>
+                    <h3>Time Complexity of Conformal Prediction</h3>
+                    <p class="project-date">December 2022</p>
+                    <p class="project-description">Developed prediction sets for classification problems using full and inductive conformal prediction methods, with Python implementation.</p>
+                    <div class="project-links">
+                        <a href="projects/conformal-prediction.html">View Project Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </div>
+                
                 <div class="project-card">
-                    <h3>Traveler's Modeling Competition (Kaggle)</h3>
-                    <p class="project-date">October - November 2023</p>
-                    <p class="project-description">Developed a predictive model for claim cost with right-skewed claim cost distribution.</p>
+                    <h3>Expected Goals Modeling with Quasi-Poisson</h3>
+                    <p class="project-date">December 2022</p>
+                    <p class="project-description">Developed a Poisson regression model to understand factors contributing to expected goals in top five soccer leagues including the English Premier League.</p>
+                    <div class="project-links">
+                        <a href="projects/expected-goals.html">View Project Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </div>
+                
                 <div class="project-card">
-                    <h3>Intern Data Scientist</h3>
-                    <p class="project-date">2019 - 2020</p>
-                    <p class="project-description">Gomoa Central District Assembly, Ghana</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="presentations" class="section">
-        <div class="container">
-            <h2>Poster Presentations</h2>
-            <div class="projects-grid">
-                <div class="project-card">
-                    <h3>The 37th New England Statistics Symposium</h3>
-                    <p class="project-date">May 2024</p>
-                    <p class="project-description">University of Connecticut</p>
-                    <p class="project-description">A poster presentation on nonparametric derivative estimation with penalized B-splines: asymptotics, an improved estimator, and applications.</p>
-                    <p class="project-award">Won Best Student Poster Award sponsored by Munich RE</p>
-                </div>
-                <div class="project-card">
-                    <h3>The 3rd New England Student Research Symposium</h3>
-                    <p class="project-date">March 2024</p>
-                    <p class="project-description">University of Boston</p>
-                    <p class="project-description">A poster presentation on nonparametric derivative estimation with penalized B-splines: asymptotics and an improved estimator.</p>
+                    <h3>Classical vs. Bayesian Regression</h3>
+                    <p class="project-date">October 2022</p>
+                    <p class="project-description">Comparative study investigating differences between classical and Bayesian regression approaches through simulation.</p>
+                    <div class="project-links">
+                        <a href="projects/regression-comparison.html">View Project Details <i class="fas fa-arrow-right"></i></a>
+                    </div>
                 </div>
             </div>
         </div>
