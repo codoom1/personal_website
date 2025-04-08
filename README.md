@@ -2,6 +2,32 @@
 
 A clean, responsive personal portfolio website to showcase your academic background, projects, publications, and contact information.
 
+## Running the Website
+
+### Option 1: Easy Launch (Recommended)
+
+Two launcher scripts are included for easy startup:
+
+- **On macOS**: Double-click the `run_website.command` file in Finder
+- **On any system**: Run `./app.sh` in your terminal
+
+These scripts will automatically start a local web server, and you can view your website at http://localhost:8000
+
+### Option 2: Manual Launch
+
+You can also run the website manually:
+
+1. Open your file explorer/finder
+2. Navigate to the website folder
+3. Double-click on the `index.html` file to open it directly in a browser
+
+OR
+
+Use Python to start a local server:
+```bash
+python3 -m http.server 8000
+```
+
 ## Features
 
 - Responsive design that works on all devices
@@ -28,7 +54,10 @@ Edit the `index.html` file to replace placeholder content with your information:
 ### 2. Profile Picture
 
 1. Add your profile picture to the project directory
-2. Update the `<img src="profile.jpg" alt="Your Name">` tag in the About section with the correct file name
+2. Update the `<img src="https://via.placeholder.com/300x300.png?text=Your+Photo" alt="Your Name">` tag in the About section with your image file name:
+   ```html
+   <img src="your-photo-filename.jpg" alt="Your Name">
+   ```
 
 ### 3. Social Media Links
 
@@ -79,10 +108,7 @@ There are several free options for hosting your personal website:
 2. **Netlify** - Free tier with easy deployment from Git
 3. **Vercel** - Free for personal projects with simple deployment
 
-For GitHub Pages:
-1. Create a repository named `yourusername.github.io`
-2. Upload your website files to this repository
-3. Your website will be available at `https://yourusername.github.io`
+For GitHub Pages setup instructions, see the GITHUB_SETUP.md file included in this repository.
 
 ## License
 
