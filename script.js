@@ -23,6 +23,14 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // Close menu when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!nav.contains(e.target) && !mobileMenuToggle.contains(e.target) && nav.classList.contains('active')) {
+            mobileMenuToggle.classList.remove('active');
+            nav.classList.remove('active');
+        }
+    });
+    
     // Smooth scrolling for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener('click', function(e) {
