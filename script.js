@@ -1,34 +1,49 @@
 // Wait for the DOM to be fully loaded
 document.addEventListener('DOMContentLoaded', function() {
     // Set the current year in the footer
-    document.getElementById('year').textContent = new Date().getFullYear();
+    const yearEl = document.getElementById('year');
+    if (yearEl) {
+        yearEl.textContent = new Date().getFullYear();
+    }
     
-    // Mobile menu toggle
-    const mobileMenuToggle = document.querySelector('.mobile-menu-toggle');
-    const nav = document.querySelector('nav');
+    // Dropdown menu toggle
+    const dropdownButtons = document.querySelectorAll('.dropdown-button');
     
-    if (mobileMenuToggle) {
-        mobileMenuToggle.addEventListener('click', function() {
-            this.classList.toggle('active');
+    dropdownButtons.forEach(button => {
+        const nav = button.nextElementSibling;
+        
+        button.addEventListener('click', function(e) {
+            e.stopPropagation();
+            const expanded = this.getAttribute('aria-expanded') === 'true';
+            this.setAttribute('aria-expanded', !expanded);
             nav.classList.toggle('active');
         });
         
         // Close menu when a nav link is clicked
-        const navLinks = document.querySelectorAll('nav a');
+        const navLinks = nav.querySelectorAll('a');
         navLinks.forEach(link => {
             link.addEventListener('click', function() {
-                mobileMenuToggle.classList.remove('active');
+                button.setAttribute('aria-expanded', 'false');
                 nav.classList.remove('active');
             });
         });
-    }
+    });
     
     // Close menu when clicking outside
     document.addEventListener('click', function(e) {
-        if (!nav.contains(e.target) && !mobileMenuToggle.contains(e.target) && nav.classList.contains('active')) {
-            mobileMenuToggle.classList.remove('active');
-            nav.classList.remove('active');
-        }
+        const dropdownMenus = document.querySelectorAll('.dropdown-menu');
+        
+        dropdownMenus.forEach(menu => {
+            const nav = menu.querySelector('nav');
+            const button = menu.querySelector('.dropdown-button');
+            
+            if (nav && nav.classList.contains('active') && !menu.contains(e.target)) {
+                nav.classList.remove('active');
+                if (button) {
+                    button.setAttribute('aria-expanded', 'false');
+                }
+            }
+        });
     });
     
     // Smooth scrolling for anchor links

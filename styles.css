@@ -61,39 +61,93 @@ header {
     font-size: 1.1rem;
 }
 
+/* Updated Navigation */
+.dropdown-menu {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-button {
+    background-color: rgba(0, 0, 0, 0.2);
+    border: none;
+    color: white;
+    font-size: 1.1rem;
+    font-weight: 500;
+    padding: 8px 12px;
+    cursor: pointer;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.menu-icon {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 20px;
+    height: 14px;
+}
+
+.menu-icon span {
+    display: block;
+    height: 2px;
+    width: 100%;
+    background-color: white;
+    border-radius: 2px;
+}
+
+nav {
+    position: absolute;
+    top: 100%;
+    right: 0;
+    background-color: var(--primary);
+    min-width: 180px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+    border-radius: 4px;
+    z-index: 1000;
+    display: none;
+    margin-top: 5px;
+}
+
+nav.active {
+    display: block;
+}
+
 nav ul {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     list-style: none;
-    flex-wrap: wrap;
     margin: 0;
+    padding: 0;
 }
 
 nav ul li {
-    margin: 0 15px;
+    margin: 0;
+    width: 100%;
 }
 
 nav ul li a {
     color: white;
     font-weight: 500;
     font-size: 1.1rem;
-    padding: 5px 0;
-    position: relative;
+    display: block;
+    padding: 12px 16px;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    transition: background-color 0.3s;
+}
+
+nav ul li:last-child a {
+    border-bottom: none;
+}
+
+nav ul li a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
 }
 
 nav ul li a::after {
-    content: '';
-    position: absolute;
-    width: 0;
-    height: 2px;
-    background-color: white;
-    bottom: 0;
-    left: 0;
-    transition: width 0.3s;
-}
-
-nav ul li a:hover::after {
-    width: 100%;
+    display: none;
 }
 
 /* Sections */
@@ -361,109 +415,22 @@ footer {
     padding: 20px 0;
 }
 
-/* Mobile Menu Toggle */
+/* Mobile Menu Toggle - not needed anymore */
 .mobile-menu-toggle {
     display: none;
-    flex-direction: column;
-    justify-content: space-between;
-    width: 30px;
-    height: 21px;
-    cursor: pointer;
-    z-index: 1000;
-}
-
-.mobile-menu-toggle span {
-    display: block;
-    height: 3px;
-    width: 100%;
-    background-color: white;
-    border-radius: 3px;
-    transition: all 0.3s ease;
 }
 
 /* Responsive */
 @media (max-width: 768px) {
     .header-container {
-        flex-direction: column;
-        gap: 10px;
+        flex-direction: row;
+        justify-content: space-between;
         position: relative;
+        padding: 0 20px;
     }
     
-    nav {
-        width: 100%;
-        max-height: 0;
-        overflow: hidden;
-        transition: max-height 0.5s ease;
-        background-color: var(--primary);
-        position: absolute;
-        top: 100%;
-        left: 0;
-        right: 0;
-        z-index: 999;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
-        border-radius: 0 0 8px 8px;
-        padding: 0;
-    }
+    /* No need for special mobile menu handling since we're using the same dropdown for all screen sizes */
     
-    nav.active {
-        max-height: 300px;
-        padding: 10px 0;
-    }
-    
-    nav ul {
-        flex-direction: column;
-        gap: 0;
-        margin-top: 0;
-        width: 100%;
-    }
-    
-    nav ul li {
-        margin: 0;
-        width: 100%;
-    }
-    
-    nav ul li a {
-        display: block;
-        padding: 12px 20px;
-        font-size: 1.1rem;
-        text-align: center;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-    }
-    
-    nav ul li:last-child a {
-        border-bottom: none;
-    }
-    
-    nav ul li a:hover {
-        background-color: rgba(255, 255, 255, 0.1);
-    }
-    
-    .mobile-menu-toggle {
-        position: absolute;
-        right: 20px;
-        top: 15px;
-        display: flex;
-        z-index: 1000;
-    }
-    
-    .mobile-menu-toggle.active span:nth-child(1) {
-        transform: translateY(9px) rotate(45deg);
-    }
-    
-    .mobile-menu-toggle.active span:nth-child(2) {
-        opacity: 0;
-    }
-    
-    .mobile-menu-toggle.active span:nth-child(3) {
-        transform: translateY(-9px) rotate(-45deg);
-    }
-    
-    .name-corner {
-        margin-left: 10px;
-        align-self: flex-start;
-    }
-    
-    /* Rest of mobile styles */
     .section {
         padding: 40px 0;
     }

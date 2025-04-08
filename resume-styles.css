@@ -364,4 +364,18 @@
         padding: 0 2px;
         border-radius: 3px;
     }
+}
+
+/* Add dropdown menu styles for resume page */
+header .dropdown-menu {
+    position: absolute;
+    right: 20px;
+    top: 20px;
+}
+
+/* Adjust header layout for dropdown menu */
+header .container {
+    position: relative;
+    padding-top: 10px;
+    padding-bottom: 10px;
 } 
