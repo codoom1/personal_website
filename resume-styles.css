@@ -1,5 +1,29 @@
 /* Resume specific styles */
 
+/* Add banner at the top of the resume */
+.resume-banner {
+    background-image: linear-gradient(rgba(128, 0, 128, 0.8), rgba(128, 0, 128, 0.6)), url('images/banner.jpg');
+    background-size: cover;
+    background-position: center;
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    text-align: center;
+    position: relative;
+    margin-bottom: 20px;
+    width: 100%;
+}
+
+/* Highlight author name in publications */
+.author-highlight {
+    font-weight: 700;
+    color: purple;
+    background-color: rgba(128, 0, 128, 0.1);
+    padding: 0 3px;
+}
+
 /* Export buttons section */
 .resume-actions {
     background-color: var(--light);
