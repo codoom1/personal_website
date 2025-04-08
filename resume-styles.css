@@ -214,8 +214,13 @@
 
 /* Responsive styles */
 @media (max-width: 768px) {
+    .resume-banner {
+        height: 120px;
+    }
+    
     .resume-container {
         padding: 25px 15px;
+        margin-top: 0;
     }
     
     .resume-header h1 {
@@ -234,11 +239,43 @@
     .date {
         margin-bottom: 10px;
     }
+    
+    .download-btn {
+        width: 100%;
+        justify-content: center;
+        margin-bottom: 10px;
+    }
+    
+    .export-buttons {
+        flex-direction: column;
+        width: 90%;
+        margin: 0 auto;
+    }
+    
+    .resume-section {
+        margin-bottom: 30px;
+    }
+    
+    .resume-item {
+        padding: 0 5px;
+    }
+    
+    .resume-section h2 {
+        font-size: 1.6rem;
+    }
+    
+    .resume-contact p, .resume-contact a {
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width: 480px) {
+    .resume-banner {
+        height: 100px;
+    }
+    
     .download-btn {
-        padding: 8px 15px;
+        padding: 10px 15px;
         font-size: 0.9rem;
     }
     
@@ -248,9 +285,34 @@
     
     .resume-section h2 {
         font-size: 1.5rem;
+        padding-bottom: 8px;
     }
     
     .resume-item-header h3 {
         font-size: 1.2rem;
+    }
+    
+    .resume-container {
+        padding: 20px 12px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    }
+    
+    .resume-header {
+        margin-bottom: 25px;
+        padding-bottom: 15px;
+    }
+    
+    .institution {
+        font-size: 0.95rem;
+    }
+    
+    .resume-item p {
+        font-size: 0.95rem;
+        line-height: 1.5;
+    }
+    
+    .author-highlight {
+        padding: 0 2px;
+        border-radius: 3px;
     }
 } 

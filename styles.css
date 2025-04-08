@@ -384,6 +384,7 @@ footer {
     .header-container {
         flex-direction: column;
         gap: 10px;
+        position: relative;
     }
     
     nav ul {
@@ -397,6 +398,7 @@ footer {
         right: 20px;
         top: 15px;
         display: flex;
+        z-index: 200;
     }
     
     .section {
@@ -422,13 +424,13 @@ footer {
         height: 200px;
     }
     
-    .github-highlight {
+    .github-highlight, .award-highlight {
         flex-direction: column;
         text-align: center;
-        padding: 12px;
+        padding: 15px;
     }
     
-    .github-highlight i {
+    .github-highlight i, .award-highlight i {
         margin-right: 0;
         margin-bottom: 10px;
     }
@@ -436,14 +438,16 @@ footer {
     .social-links {
         justify-content: center;
         display: flex;
+        gap: 25px;
+        margin-top: 20px;
     }
     
     .projects-grid {
         grid-template-columns: 1fr;
     }
     
-    .education-item, .project-card, .publication-item {
-        padding: 15px;
+    .project-card, .publication-item {
+        padding: 20px;
         margin-bottom: 25px;
     }
     
@@ -453,10 +457,11 @@ footer {
     
     .contact-info {
         flex-direction: column;
-        gap: 20px;
+        gap: 25px;
     }
     
     nav {
+        width: 100%;
         max-height: 0;
         overflow: hidden;
         transition: max-height 0.5s ease;
@@ -479,8 +484,9 @@ footer {
     }
     
     .education-summary {
-        padding: 12px;
+        padding: 15px;
         margin-top: 15px;
+        width: 100%;
     }
     
     .education-summary h3 {
@@ -490,37 +496,101 @@ footer {
     .education-summary p {
         font-size: 0.9rem;
     }
+    
+    /* Improve banner for mobile */
+    .phd-banner {
+        height: auto;
+        min-height: 250px;
+        padding: 30px 0;
+    }
+    
+    .banner-content {
+        padding: 0 30px;
+    }
+    
+    .banner-title {
+        font-size: 2.5rem;
+    }
+    
+    .banner-text {
+        font-size: 1rem;
+    }
+    
+    /* Better touch targets for mobile */
+    .project-links a, .publication-item a, .contact-item a {
+        padding: 10px 16px;
+        display: inline-block;
+    }
+    
+    /* Improve spacing in contact section */
+    .contact-item {
+        width: 100%;
+        padding: 0 20px;
+    }
+    
+    .contact-item i {
+        font-size: 2.5rem;
+        margin-bottom: 12px;
+    }
 }
 
 /* Small phones */
 @media (max-width: 480px) {
     header h1 {
-        font-size: 2rem;
+        font-size: 1.8rem;
+    }
+    
+    .name-corner {
+        font-size: 1rem;
     }
     
     .profile-image {
-        max-width: 200px;
+        max-width: 180px;
     }
     
     .profile-image img {
-        width: 180px;
-        height: 180px;
+        width: 160px;
+        height: 160px;
     }
     
     .section h2 {
         font-size: 1.6rem;
     }
     
+    .section {
+        padding: 30px 0;
+    }
+    
     .education-item h3, .project-card h3 {
         font-size: 1.2rem;
     }
     
-    .github-highlight {
-        padding: 10px;
+    .github-highlight, .award-highlight {
+        padding: 12px;
     }
     
-    .education-item, .project-card, .publication-item {
-        padding: 12px;
+    .project-card, .publication-item {
+        padding: 15px;
+        box-shadow: 0 3px 10px rgba(0, 0, 0, 0.05);
+    }
+    
+    .banner-title {
+        font-size: 2rem;
+    }
+    
+    /* Smaller banner for very small screens */
+    .phd-banner {
+        min-height: 200px;
+    }
+    
+    .banner-content {
+        padding: 0 20px;
+    }
+    
+    /* More compact footer for small screens */
+    footer {
+        padding: 15px 0;
+        font-size: 0.9rem;
     }
 }
 
