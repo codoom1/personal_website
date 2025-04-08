@@ -1,0 +1,334 @@
+/* Global styles */
+:root {
+    --primary: #0070f3;
+    --dark: #333;
+    --light: #f5f5f5;
+    --gray: #666;
+    --border: #ddd;
+    --container-width: 1200px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    line-height: 1.6;
+    color: var(--dark);
+    background-color: #fff;
+}
+
+a {
+    color: var(--primary);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: #0051a8;
+}
+
+img {
+    max-width: 100%;
+}
+
+.container {
+    max-width: var(--container-width);
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Header */
+header {
+    background-color: var(--primary);
+    color: white;
+    padding: 60px 0 20px;
+    text-align: center;
+}
+
+header h1 {
+    font-size: 3rem;
+    margin-bottom: 10px;
+}
+
+header .subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 30px;
+    font-weight: 300;
+}
+
+nav ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    flex-wrap: wrap;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    font-weight: 500;
+    font-size: 1.1rem;
+    padding: 5px 0;
+    position: relative;
+}
+
+nav ul li a::after {
+    content: '';
+    position: absolute;
+    width: 0;
+    height: 2px;
+    background-color: white;
+    bottom: 0;
+    left: 0;
+    transition: width 0.3s;
+}
+
+nav ul li a:hover::after {
+    width: 100%;
+}
+
+/* Sections */
+.section {
+    padding: 80px 0;
+}
+
+.section:nth-child(odd) {
+    background-color: var(--light);
+}
+
+.section h2 {
+    text-align: center;
+    margin-bottom: 50px;
+    font-size: 2.2rem;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.section h2::after {
+    content: '';
+    position: absolute;
+    width: 80px;
+    height: 3px;
+    background-color: var(--primary);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* About Section */
+.about-content {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    flex-wrap: wrap;
+}
+
+.profile-image {
+    flex: 1;
+    min-width: 250px;
+}
+
+.profile-image img {
+    border-radius: 50%;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.about-text {
+    flex: 2;
+    min-width: 300px;
+}
+
+.about-text p {
+    margin-bottom: 20px;
+}
+
+.social-links {
+    margin-top: 30px;
+}
+
+.social-links a {
+    font-size: 1.5rem;
+    margin-right: 20px;
+    transition: transform 0.3s;
+}
+
+.social-links a:hover {
+    transform: translateY(-5px);
+}
+
+/* Education Section */
+.education-item {
+    margin-bottom: 40px;
+    padding: 25px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.education-item h3 {
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.education-item .institution {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.education-item .date {
+    color: var(--gray);
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+/* Projects Section */
+.projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 30px;
+}
+
+.project-card {
+    background-color: white;
+    border-radius: 8px;
+    padding: 25px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+    transition: transform 0.3s;
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+}
+
+.project-card h3 {
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+.project-description {
+    margin-bottom: 20px;
+}
+
+.project-links {
+    display: flex;
+    gap: 15px;
+}
+
+.project-links a {
+    padding: 8px 15px;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 4px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s;
+}
+
+.project-links a:hover {
+    background-color: #0051a8;
+}
+
+/* Publications Section */
+.publication-item {
+    margin-bottom: 40px;
+    padding: 25px;
+    background-color: white;
+    border-radius: 8px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.publication-item h3 {
+    color: var(--primary);
+    margin-bottom: 10px;
+}
+
+.publication-item .authors {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+.publication-item .journal {
+    color: var(--gray);
+    font-style: italic;
+    margin-bottom: 15px;
+}
+
+.publication-item a {
+    display: inline-block;
+    margin-top: 15px;
+    padding: 8px 15px;
+    background-color: var(--primary);
+    color: white;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.publication-item a:hover {
+    background-color: #0051a8;
+}
+
+/* Contact Section */
+.contact-info {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 40px;
+}
+
+.contact-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+.contact-item i {
+    font-size: 2rem;
+    color: var(--primary);
+    margin-bottom: 15px;
+}
+
+/* Footer */
+footer {
+    background-color: var(--dark);
+    color: white;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+    
+    nav ul {
+        flex-direction: column;
+        gap: 15px;
+    }
+    
+    .section {
+        padding: 60px 0;
+    }
+    
+    .about-content {
+        flex-direction: column;
+        text-align: center;
+    }
+    
+    .social-links {
+        justify-content: center;
+        display: flex;
+    }
+    
+    .projects-grid {
+        grid-template-columns: 1fr;
+    }
+} 
